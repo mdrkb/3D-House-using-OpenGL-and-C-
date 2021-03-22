@@ -228,17 +228,17 @@ void Initialize() {
 	glLoadIdentity();
 	glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);
 
-	Image* image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\bricks.bmp");
+	Image* image = loadBMP("bricks.bmp");
 	_textureBrick = loadTexture(image);
-	image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\door.bmp");
+	image = loadBMP("door.bmp");
 	_textureDoor = loadTexture(image);
-	image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\grass.bmp");
+	image = loadBMP("grass.bmp");
 	_textureGrass = loadTexture(image);
-	image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\roof.bmp");
+	image = loadBMP("roof.bmp");
 	_textureRoof = loadTexture(image);
-	image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\window.bmp");
+	image = loadBMP("window.bmp");
 	_textureWindow = loadTexture(image);
-	image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\sky.bmp");
+	image = loadBMP("sky.bmp");
 	_textureSky = loadTexture(image);
 	delete image;
 }

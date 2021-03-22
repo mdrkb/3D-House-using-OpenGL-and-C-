@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <assert.h>
 #include <fstream>
-
+#include <string.h>
 #include "imageloader.h"
 
 using namespace std;
@@ -112,7 +112,10 @@ namespace {
 
 Image* loadBMP(const char* filename) {
 	ifstream input;
-	input.open(filename, ifstream::binary);
+	char src[100];
+	strcpy(src, "C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\");
+	strcat(src, filename);
+	input.open(src, ifstream::binary);
 	assert(!input.fail() || !"Could not find file");
 	char buffer[2];
 	input.read(buffer, 2);
