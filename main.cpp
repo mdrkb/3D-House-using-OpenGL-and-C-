@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <windows.h>
 #include <GL/glut.h>
 #include "imageloader.h"
 
@@ -227,17 +228,17 @@ void Initialize() {
 	glLoadIdentity();
 	glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);
 
-	Image* image = loadBMP("C:\\Users\\Rakibul Islam\\Desktop\\Graphics\\Offline6\\bricks.bmp");
+	Image* image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\bricks.bmp");
 	_textureBrick = loadTexture(image);
-	image = loadBMP("C:\\Users\\Rakibul Islam\\Desktop\\Graphics\\Offline6\\door.bmp");
+	image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\door.bmp");
 	_textureDoor = loadTexture(image);
-	image = loadBMP("C:\\Users\\Rakibul Islam\\Desktop\\Graphics\\Offline6\\grass.bmp");
+	image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\grass.bmp");
 	_textureGrass = loadTexture(image);
-	image = loadBMP("C:\\Users\\Rakibul Islam\\Desktop\\Graphics\\Offline6\\roof.bmp");
+	image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\roof.bmp");
 	_textureRoof = loadTexture(image);
-	image = loadBMP("C:\\Users\\Rakibul Islam\\Desktop\\Graphics\\Offline6\\window.bmp");
+	image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\window.bmp");
 	_textureWindow = loadTexture(image);
-	image = loadBMP("C:\\Users\\Rakibul Islam\\Desktop\\Graphics\\Offline6\\sky.bmp");
+	image = loadBMP("C:\\Users\\neko_\\Desktop\\New folder (4)\\3D House\\sky.bmp");
 	_textureSky = loadTexture(image);
 	delete image;
 }
