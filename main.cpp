@@ -4,7 +4,7 @@
 #include "imageloader.h"
 
 float _angle = 0.0;
-GLuint _textureBrick, _textureDoor, _textureGrass, _textureRoof, _textureWindow, _textureSky;
+GLuint _textureBrick, _textureDoor, _textureGrass, _textureRoof, _textureWindow, _textureSky, _textureChimney;
 
 static void resize(int width, int height)
 {
@@ -65,6 +65,16 @@ void renderScene(void) {
             glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-2,-1.5,1);
         glEnd();
 
+        glBindTexture(GL_TEXTURE_2D, _textureChimney);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Chimney
+            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-2,0.7,0.6);
+            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(-1.5,0.7,0.6);
+            glTexCoord3f(4.0,0.0,0.1);  glVertex3f(-1.5,0,0.6);
+            glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-2.0,0,0.6);
+        glEnd();
+
         glBindTexture(GL_TEXTURE_2D, _textureRoof);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -118,6 +128,16 @@ void renderScene(void) {
             glTexCoord3f(0.0,0.0,-1);  glVertex3f(-2,-1.5,-1);
         glEnd();
 
+        glBindTexture(GL_TEXTURE_2D, _textureChimney);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Chimney
+            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-2,0.7,0.3);
+            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(-1.5,0.7,0.3);
+            glTexCoord3f(4.0,0.0,0.1);  glVertex3f(-1.5,0.3,0.3);
+            glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-2.0,0.3,0.3);
+        glEnd();
+
         glBindTexture(GL_TEXTURE_2D, _textureRoof);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -165,6 +185,16 @@ void renderScene(void) {
             glTexCoord3f(1.0,0.0,1); glVertex3f(2,0,1);
             glTexCoord3f(-1.0,0.0,-1); glVertex3f(2,0,-1);
         glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureChimney);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Chimney
+            glTexCoord3f(0.0,2.0,1); glVertex3f(-1.5,0.7,0.6);
+            glTexCoord3f(2.0,2.0,-1); glVertex3f(-1.5,0.7,0.3);
+            glTexCoord3f(2.0,0.0,-1); glVertex3f(-1.5,0.0,0.3);
+            glTexCoord3f(0.0,0.0,1); glVertex3f(-1.5,0.0,0.6);
+        glEnd();
     glPopMatrix();
 
     // Left side
@@ -185,6 +215,16 @@ void renderScene(void) {
             glTexCoord3f(0.0,1.0,0);    glVertex3f(-2,0.5,0);
             glTexCoord3f(1.0,0.0,1);    glVertex3f(-2,0,1);
             glTexCoord3f(-1.0,0.0,-1);    glVertex3f(-2,0,-1);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureChimney);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Chimney
+            glTexCoord3f(0.0,2.0,1); glVertex3f(-2.0,0.7,0.6);
+            glTexCoord3f(2.0,2.0,-1); glVertex3f(-2.0,0.7,0.3);
+            glTexCoord3f(2.0,0.0,-1); glVertex3f(-2.0,0.35,0.3);
+            glTexCoord3f(0.0,0.0,1); glVertex3f(-2.0,0.2,0.6);
         glEnd();
     glPopMatrix();
 
@@ -240,6 +280,8 @@ void Initialize() {
 	_textureWindow = loadTexture(image);
 	image = loadBMP("sky.bmp");
 	_textureSky = loadTexture(image);
+   image = loadBMP("chimney.bmp");
+	_textureChimney = loadTexture(image);
 	delete image;
 }
 
@@ -248,7 +290,7 @@ int main(int argc, char **argv) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowPosition(50,50);
 	glutInitWindowSize(600,600);
-	glutCreateWindow("Textured House by Rakib");
+	glutCreateWindow("Textured House by Mai");
 	glEnable(GL_DEPTH_TEST);
 
 	glutReshapeFunc(resize);
