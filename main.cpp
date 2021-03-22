@@ -4,7 +4,7 @@
 #include "imageloader.h"
 
 float _angle = 0.0;
-GLuint _textureBrick, _textureDoor, _textureGrass, _textureRoof, _textureWindow, _textureSky, _textureChimney;
+GLuint _textureBrick, _textureDoor, _textureGrass, _textureRoof, _textureWindow, _textureSky, _textureChimney, _textureSand;
 
 static void resize(int width, int height)
 {
@@ -36,9 +36,9 @@ void renderScene(void) {
         glEnd();
     glPopMatrix();
 
-    // Grass
+    // Sand
     glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D, _textureGrass);
+        glBindTexture(GL_TEXTURE_2D, _textureSand);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTranslatef(0,0,-6);
@@ -282,6 +282,8 @@ void Initialize() {
 	_textureSky = loadTexture(image);
    image = loadBMP("chimney.bmp");
 	_textureChimney = loadTexture(image);
+   image = loadBMP("sand.bmp");
+	_textureSand = loadTexture(image);
 	delete image;
 }
 
