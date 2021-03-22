@@ -4,7 +4,7 @@
 #include "imageloader.h"
 
 float _angle = 0.0;
-GLuint _textureBrick, _textureDoor, _textureGrass, _textureRoof, _textureWindow, _textureSky, _textureChimney, _textureSand;
+GLuint _textureBrick, _textureDoor, _textureGrass, _textureRoof, _textureWindow, _textureSky, _textureChimney, _textureSand, _textureSnow, _textureWood;
 
 static void resize(int width, int height)
 {
@@ -36,9 +36,9 @@ void renderScene(void) {
         glEnd();
     glPopMatrix();
 
-    // Sand
+    // Snow
     glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D, _textureSand);
+        glBindTexture(GL_TEXTURE_2D, _textureSnow);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTranslatef(0,0,-6);
@@ -53,14 +53,14 @@ void renderScene(void) {
 
     // Front side
     glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D, _textureBrick);
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTranslatef(0,0,-6);
         glRotatef(_angle, 0.0, 1.0, 0.0);
         glBegin(GL_QUADS);  // Wall
-            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-2,0,1);
-            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(2,0,1);
+            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-2,0.1,1);
+            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(2,0.1,1);
             glTexCoord3f(4.0,0.0,0.1);  glVertex3f(2,-1.5,1);
             glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-2,-1.5,1);
         glEnd();
@@ -69,20 +69,20 @@ void renderScene(void) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBegin(GL_QUADS);  // Chimney
-            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-2,0.7,0.6);
-            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(-1.5,0.7,0.6);
-            glTexCoord3f(4.0,0.0,0.1);  glVertex3f(-1.5,0,0.6);
-            glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-2.0,0,0.6);
+            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-1.8,1.2,0.6);
+            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(-1.5,1.2,0.6);
+            glTexCoord3f(4.0,0.0,0.1);  glVertex3f(-1.5,0.5,0.6);
+            glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-1.8,0.5,0.6);
         glEnd();
 
-        glBindTexture(GL_TEXTURE_2D, _textureRoof);
+        glBindTexture(GL_TEXTURE_2D, _textureSnow);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBegin(GL_QUADS);  // Roof
-            glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,0.5,0);
-            glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,0.5,0);
-            glTexCoord3f(4.0,0.0,1.25); glVertex3f(2.2,-0.1,1.25);
-            glTexCoord3f(0.0,0.0,1.25); glVertex3f(-2.2,-0.1,1.25);
+            glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,1.0,0);
+            glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,1.0,0);
+            glTexCoord3f(4.0,0.0,1.25); glVertex3f(2.2,0.0,1.25);
+            glTexCoord3f(0.0,0.0,1.25); glVertex3f(-2.2,0.0,1.25);
         glEnd();
 
         glBindTexture(GL_TEXTURE_2D, _textureDoor);
@@ -116,14 +116,14 @@ void renderScene(void) {
     // Back side
     glPushMatrix();
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, _textureBrick);
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTranslatef(0,0,-6);
         glRotatef(_angle, 0.0, 1.0, 0.0);
         glBegin(GL_QUADS);  // Wall
-            glTexCoord3f(0.0,2.0,-1);  glVertex3f(-2,0,-1);
-            glTexCoord3f(4.0,2.0,-1);  glVertex3f(2,0,-1);
+            glTexCoord3f(0.0,2.0,-1);  glVertex3f(-2,0.1,-1);
+            glTexCoord3f(4.0,2.0,-1);  glVertex3f(2,0.1,-1);
             glTexCoord3f(4.0,0.0,-1);  glVertex3f(2,-1.5,-1);
             glTexCoord3f(0.0,0.0,-1);  glVertex3f(-2,-1.5,-1);
         glEnd();
@@ -132,20 +132,20 @@ void renderScene(void) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBegin(GL_QUADS);  // Chimney
-            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-2,0.7,0.3);
-            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(-1.5,0.7,0.3);
-            glTexCoord3f(4.0,0.0,0.1);  glVertex3f(-1.5,0.3,0.3);
-            glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-2.0,0.3,0.3);
+            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-1.8,1.2,0.3);
+            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(-1.5,1.2,0.3);
+            glTexCoord3f(4.0,0.0,0.1);  glVertex3f(-1.5,0.8,0.3);
+            glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-1.8,0.8,0.3);
         glEnd();
 
-        glBindTexture(GL_TEXTURE_2D, _textureRoof);
+        glBindTexture(GL_TEXTURE_2D, _textureSnow);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBegin(GL_QUADS);  // Roof
-            glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,0.5,0);
-            glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,0.5,0);
-            glTexCoord3f(4.0,0.0,-1.25); glVertex3f(2.2,-0.1,-1.25);
-            glTexCoord3f(0.0,0.0,-1.25); glVertex3f(-2.2,-0.1,-1.25);
+            glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,1.0,0);
+            glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,1.0,0);
+            glTexCoord3f(4.0,0.0,-1.25); glVertex3f(2.2,0.0,-1.25);
+            glTexCoord3f(0.0,0.0,-1.25); glVertex3f(-2.2,0.0,-1.25);
         glEnd();
 
         glBindTexture(GL_TEXTURE_2D, _textureWindow);
@@ -168,63 +168,63 @@ void renderScene(void) {
 
     // Right side
     glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D, _textureBrick);
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTranslatef(0,0,-6);
         glRotatef(_angle, 0.0, 1.0, 0.0);
         glBegin(GL_QUADS);  // Wall
-            glTexCoord3f(0.0,2.0,1); glVertex3f(2,0,1);
-            glTexCoord3f(2.0,2.0,-1); glVertex3f(2,0,-1);
+            glTexCoord3f(0.0,2.0,1); glVertex3f(2,0.2,1);
+            glTexCoord3f(2.0,2.0,-1); glVertex3f(2,0.2,-1);
             glTexCoord3f(2.0,0.0,-1); glVertex3f(2,-1.5,-1);
             glTexCoord3f(0.0,0.0,1); glVertex3f(2,-1.5,1);
         glEnd();
 
         glBegin(GL_TRIANGLES);  // Wall Upper
-            glTexCoord3f(0.0,1.0,0); glVertex3f(2,0.5,0);
-            glTexCoord3f(1.0,0.0,1); glVertex3f(2,0,1);
-            glTexCoord3f(-1.0,0.0,-1); glVertex3f(2,0,-1);
+            glTexCoord3f(0.0,1.0,0); glVertex3f(2,1.0,0);
+            glTexCoord3f(1.0,0.0,1); glVertex3f(2,0.2,1);
+            glTexCoord3f(-1.0,0.0,-1); glVertex3f(2,0.2,-1);
         glEnd();
 
         glBindTexture(GL_TEXTURE_2D, _textureChimney);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBegin(GL_QUADS);  // Chimney
-            glTexCoord3f(0.0,2.0,1); glVertex3f(-1.5,0.7,0.6);
-            glTexCoord3f(2.0,2.0,-1); glVertex3f(-1.5,0.7,0.3);
-            glTexCoord3f(2.0,0.0,-1); glVertex3f(-1.5,0.0,0.3);
-            glTexCoord3f(0.0,0.0,1); glVertex3f(-1.5,0.0,0.6);
+            glTexCoord3f(0.0,2.0,1); glVertex3f(-1.5,1.2,0.6);
+            glTexCoord3f(2.0,2.0,-1); glVertex3f(-1.5,1.2,0.3);
+            glTexCoord3f(2.0,0.0,-1); glVertex3f(-1.5,0.5,0.3);
+            glTexCoord3f(0.0,0.0,1); glVertex3f(-1.5,0.5,0.6);
         glEnd();
     glPopMatrix();
 
     // Left side
     glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D, _textureBrick);
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTranslatef(0,0,-6);
         glRotatef(_angle, 0.0, 1.0, 0.0);
         glBegin(GL_QUADS);  // Wall
-            glTexCoord3f(0.0,2.0,1);    glVertex3f(-2,0,1);
-            glTexCoord3f(2.0,2.0,-1);    glVertex3f(-2,0,-1);
+            glTexCoord3f(0.0,2.0,1);    glVertex3f(-2,0.2,1);
+            glTexCoord3f(2.0,2.0,-1);    glVertex3f(-2,0.2,-1);
             glTexCoord3f(2.0,0.0,-1);    glVertex3f(-2,-1.5,-1);
             glTexCoord3f(0.0,0.0,1);    glVertex3f(-2,-1.5,1);
         glEnd();
 
         glBegin(GL_TRIANGLES);  // Wall Upper
-            glTexCoord3f(0.0,1.0,0);    glVertex3f(-2,0.5,0);
-            glTexCoord3f(1.0,0.0,1);    glVertex3f(-2,0,1);
-            glTexCoord3f(-1.0,0.0,-1);    glVertex3f(-2,0,-1);
+            glTexCoord3f(0.0,1.0,0);    glVertex3f(-2,1.0,0);
+            glTexCoord3f(1.0,0.0,1);    glVertex3f(-2,0.2,1);
+            glTexCoord3f(-1.0,0.0,-1);    glVertex3f(-2,0.2,-1);
         glEnd();
 
         glBindTexture(GL_TEXTURE_2D, _textureChimney);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBegin(GL_QUADS);  // Chimney
-            glTexCoord3f(0.0,2.0,1); glVertex3f(-2.0,0.7,0.6);
-            glTexCoord3f(2.0,2.0,-1); glVertex3f(-2.0,0.7,0.3);
-            glTexCoord3f(2.0,0.0,-1); glVertex3f(-2.0,0.35,0.3);
-            glTexCoord3f(0.0,0.0,1); glVertex3f(-2.0,0.2,0.6);
+            glTexCoord3f(0.0,2.0,1); glVertex3f(-1.8,1.2,0.6);
+            glTexCoord3f(2.0,2.0,-1); glVertex3f(-1.8,1.2,0.3);
+            glTexCoord3f(2.0,0.0,-1); glVertex3f(-1.8,0.85,0.3);
+            glTexCoord3f(0.0,0.0,1); glVertex3f(-1.8,0.7,0.6);
         glEnd();
     glPopMatrix();
 
@@ -284,6 +284,10 @@ void Initialize() {
 	_textureChimney = loadTexture(image);
    image = loadBMP("sand.bmp");
 	_textureSand = loadTexture(image);
+   image = loadBMP("snow.bmp");
+	_textureSnow = loadTexture(image);
+   image = loadBMP("wood.bmp");
+	_textureWood = loadTexture(image);
 	delete image;
 }
 
