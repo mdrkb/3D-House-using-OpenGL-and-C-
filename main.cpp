@@ -215,16 +215,6 @@ void renderScene(void) {
             glTexCoord3f(2.0,0.0,-1); glVertex3f(-1.5,0.5,0.3);
             glTexCoord3f(0.0,0.0,1); glVertex3f(-1.5,0.5,0.6);
         glEnd();
-
-        glBindTexture(GL_TEXTURE_2D, _textureDoor);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glBegin(GL_QUADS);  // Door
-            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(2.001,-0.4,0.3);
-            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(2.001,-0.4,-0.3);
-            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(2.001,-1.5,-0.3);
-            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(2.001,-1.5,0.3);
-        glEnd();
     glPopMatrix();
 
     // Left side
@@ -253,8 +243,18 @@ void renderScene(void) {
         glBegin(GL_QUADS);  // Chimney
             glTexCoord3f(0.0,2.0,1); glVertex3f(-1.8,1.2,0.6);
             glTexCoord3f(2.0,2.0,-1); glVertex3f(-1.8,1.2,0.3);
-            glTexCoord3f(2.0,0.0,-1); glVertex3f(-1.8,0.85,0.3);
-            glTexCoord3f(0.0,0.0,1); glVertex3f(-1.8,0.7,0.6);
+            glTexCoord3f(2.0,0.0,-1); glVertex3f(-1.8,0.65,0.3);
+            glTexCoord3f(0.0,0.0,1); glVertex3f(-1.8,0.5,0.6);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureDoor);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Door
+            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(-2.001,-0.4,0.3);
+            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(-2.001,-0.4,-0.3);
+            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(-2.001,-1.5,-0.3);
+            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(-2.001,-1.5,0.3);
         glEnd();
     glPopMatrix();
 
