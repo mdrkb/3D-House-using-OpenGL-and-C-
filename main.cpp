@@ -79,6 +79,16 @@ void renderScene(void) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBegin(GL_QUADS);  // Roof
+            glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,1.0001,0);
+            glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,1.0001,0);
+            glTexCoord3f(4.0,0.0,1.25); glVertex3f(2.2,0.0,1.25);
+            glTexCoord3f(0.0,0.0,1.25); glVertex3f(-2.2,0.0,1.25);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Roof Lower
             glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,1.0,0);
             glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,1.0,0);
             glTexCoord3f(4.0,0.0,1.25); glVertex3f(2.2,0.0,1.25);
@@ -89,27 +99,27 @@ void renderScene(void) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBegin(GL_QUADS);  // Door
-            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(-0.3,-0.4,1.0001);
-            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(0.3,-0.4,1.0001);
-            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(0.3,-1.5,1.0001);
-            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(-0.3,-1.5,1.0001);
+            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(0.75,-0.4,1.0001);
+            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(1.5,-0.4,1.0001);
+            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(1.5,-1.5,1.0001);
+            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(0.75,-1.5,1.0001);
         glEnd();
 
         glBindTexture(GL_TEXTURE_2D, _textureWindow);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBegin(GL_QUADS);  // Window Left
-            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(-1.5,-0.3,1.0001);
-            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(-0.75,-0.3,1.0001);
-            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(-0.75,-0.8,1.0001);
-            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(-1.5,-0.8,1.0001);
+            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(-1.5,-0.4,1.0001);
+            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(-0.75,-0.4,1.0001);
+            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(-0.75,-0.9,1.0001);
+            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(-1.5,-0.9,1.0001);
         glEnd();
 
         glBegin(GL_QUADS);  // Window Right
-            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(1.5,-0.3,1.0001);
-            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(0.75,-0.3,1.0001);
-            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(0.75,-0.8,1.0001);
-            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(1.5,-0.8,1.0001);
+            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(0.3,-0.4,1.0001);
+            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(-0.3,-0.4,1.0001);
+            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(-0.3,-0.9,1.0001);
+            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(0.3,-0.9,1.0001);
         glEnd();
     glPopMatrix();
 
@@ -142,6 +152,16 @@ void renderScene(void) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glBegin(GL_QUADS);  // Roof
+            glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,1.0001,0);
+            glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,1.0001,0);
+            glTexCoord3f(4.0,0.0,-1.25); glVertex3f(2.2,0.0,-1.25);
+            glTexCoord3f(0.0,0.0,-1.25); glVertex3f(-2.2,0.0,-1.25);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Roof Lower
             glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,1.0,0);
             glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,1.0,0);
             glTexCoord3f(4.0,0.0,-1.25); glVertex3f(2.2,0.0,-1.25);
@@ -194,6 +214,16 @@ void renderScene(void) {
             glTexCoord3f(2.0,2.0,-1); glVertex3f(-1.5,1.2,0.3);
             glTexCoord3f(2.0,0.0,-1); glVertex3f(-1.5,0.5,0.3);
             glTexCoord3f(0.0,0.0,1); glVertex3f(-1.5,0.5,0.6);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureDoor);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Door
+            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(2.001,-0.4,0.3);
+            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(2.001,-0.4,-0.3);
+            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(2.001,-1.5,-0.3);
+            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(2.001,-1.5,0.3);
         glEnd();
     glPopMatrix();
 
