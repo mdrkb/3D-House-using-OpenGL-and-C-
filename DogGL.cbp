@@ -13,15 +13,16 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-Wall" />
 					<Add option="-g" />
 					<Add option="-DWIN32" />
 					<Add option="-D_DEBUG" />
 					<Add option="-D_CONSOLE" />
-					<Add option="-Wall" />
 					<Add directory="include/" />
 				</Compiler>
 				<Linker>
-					<Add library="freeglut.lib" />
+					<Add library="C:/MinGW/lib/libfreeglut.a" />
+					<Add library="C:/MinGW/lib/libfreeglut_static.a" />
 					<Add directory="lib/" />
 				</Linker>
 			</Target>
@@ -79,6 +80,12 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Linker>
+			<Add library="C:/MinGW/lib/libfreeglut.a" />
+			<Add library="C:/MinGW/lib/libfreeglut_static.a" />
+			<Add library="C:/MinGW/lib/libglu32.a" />
+			<Add library="C:/MinGW/lib/libopengl32.a" />
+		</Linker>
 		<Unit filename="Dog.cpp" />
 		<Unit filename="Dog.h" />
 		<Unit filename="Floor.cpp" />
@@ -91,6 +98,8 @@
 		<Unit filename="Scene.h" />
 		<Unit filename="Walls.cpp" />
 		<Unit filename="Walls.h" />
+		<Unit filename="imageloader.cpp" />
+		<Unit filename="imageloader.h" />
 		<Unit filename="include/imgui/imconfig.h" />
 		<Unit filename="include/imgui/imgui.cpp" />
 		<Unit filename="include/imgui/imgui.h" />

@@ -53,7 +53,7 @@ static void HelpMarker(const char* desc); // ad explenation to the option
 // this class represent the whole scene
 class Scene
 {
-private:	
+private:
 	Dog* dog;
 	ObjectGL* dog_house;
 	ObjectGL* statue;
@@ -71,9 +71,10 @@ private:
 	void display_menu(); // display the menu (base on imgui)
 public:
 	Scene(int argc, char** argv);
-	void display(); // Function where the scene drawing occures	
+	void display(); // Function where the scene drawing occures
 	void keyboard(unsigned char key, int x, int y); // Function for keyboard press
 	void keyboardUp(unsigned char key, int x, int y); // // Function for keyboard after press
+    void mySpecialFunc(int key, int x, int y);
 	void reshape(GLint w, GLint h); // Function to handle reshape of the screen
 	void SpecialInput(int key, int x, int y); // Function to handle arrows key
 	void SpecialInputUp(int key, int x, int y); // Function to handle arrows key after press

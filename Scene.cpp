@@ -24,11 +24,13 @@ void keyboardupcallback(unsigned char key, int x, int y)
 }
 void Specialcallback(int key, int x, int y)
 {
+//    currentInstance->mySpecialFunc(key, x, y);
 	currentInstance->SpecialInput(key, x, y);
 }
 void Specialupcallback(int key, int x, int y)
 {
 	currentInstance->SpecialInputUp(key, x, y);
+//    currentInstance->mySpecialFunc(key, x, y);
 }
 void timercallback(int v)
 {
@@ -64,11 +66,29 @@ Scene::Scene(int argc, char** argv) {
 	glLoadIdentity();
 	glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);
 
-	Image* image = loadBMP("snow.bmp");
+	Image* image = loadBMP("bricks.bmp");
+	_textureBrick = loadTexture(image);
+	image = loadBMP("door.bmp");
+	_textureDoor = loadTexture(image);
+	image = loadBMP("grass.bmp");
+	_textureGrass = loadTexture(image);
+	image = loadBMP("roof.bmp");
+	_textureRoof = loadTexture(image);
+	image = loadBMP("window.bmp");
+	_textureWindow = loadTexture(image);
+	image = loadBMP("sky.bmp");
+	_textureSky = loadTexture(image);
+   image = loadBMP("chimney.bmp");
+	_textureChimney = loadTexture(image);
+   image = loadBMP("sand.bmp");
+	_textureSand = loadTexture(image);
+   image = loadBMP("snow.bmp");
 	_textureSnow = loadTexture(image);
+   image = loadBMP("wood.bmp");
+	_textureWood = loadTexture(image);
 
 	// create drawing objects
-	this->dog = new Dog("GermanShephardLowPoly.obj", 0, 0, 0, 0.5f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
+	this->dog = new Dog("GermanShephardLowPoly.obj", 0, -1.5f, -3, 0.05f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
 //	this->floor = new Floor(-10, 10, -10, 10);
 //	this->walls = new Walls(10, -10, 10, -10, 10);
 	this->flashlight = new Light(GL_LIGHT0, 0, 8, 0, "Flashlight.obj", 0.2f);
@@ -95,6 +115,7 @@ Scene::Scene(int argc, char** argv) {
 	glutTimerFunc(100, timercallback, 0);
 	glutKeyboardFunc(keyboardcallback);
 	glutKeyboardUpFunc(keyboardupcallback);
+//    glutSpecialFunc(mySpecialFunc);
 	glutSpecialFunc(Specialcallback);
 	glutSpecialUpFunc(Specialupcallback);
 
@@ -127,7 +148,7 @@ void Scene::display() {
 //			0, 1, 0);
 //	}
 //	else {
-		gluLookAt(camera_position[0], camera_position[1], camera_position[2],
+		gluLookAt(0, 0, 2,
 			camera_target[0], camera_target[1], camera_target[2],
 			0, 1, 0);
 //	}
@@ -153,7 +174,22 @@ void Scene::display() {
 	dog->draw();
 //	flashlight->draw();
     glDisable(GL_LIGHTING);
-	    // Snow
+
+    // Sky
+    glPushMatrix();
+        glBindTexture(GL_TEXTURE_2D, _textureSky);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTranslatef(0,0,-10);
+        glBegin(GL_QUADS);
+            glTexCoord3f(0.0,1.0,0.1);  glVertex3f(-20,20,0);
+            glTexCoord3f(1.0,1.0,0.1);  glVertex3f(20,20,0);
+            glTexCoord3f(1.0,0.0,0.1);  glVertex3f(20,-20,0);
+            glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-20,-20,0);
+        glEnd();
+    glPopMatrix();
+
+	// Snow
     glPushMatrix();
         glBindTexture(GL_TEXTURE_2D, _textureSnow);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -168,6 +204,212 @@ void Scene::display() {
         glEnd();
     glPopMatrix();
 
+    glPushMatrix();
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTranslatef(0,0,-6);
+        glRotatef(_angle, 0.0, 1.0, 0.0);
+        glBegin(GL_QUADS);  // Wall
+            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-2,0.1,1);
+            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(2,0.1,1);
+            glTexCoord3f(4.0,0.0,0.1);  glVertex3f(2,-1.5,1);
+            glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-2,-1.5,1);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureChimney);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Chimney
+            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-1.8,1.2,0.6);
+            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(-1.5,1.2,0.6);
+            glTexCoord3f(4.0,0.0,0.1);  glVertex3f(-1.5,0.5,0.6);
+            glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-1.8,0.5,0.6);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureSnow);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Roof
+            glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,1.0001,0);
+            glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,1.0001,0);
+            glTexCoord3f(4.0,0.0,1.25); glVertex3f(2.2,0.0,1.25);
+            glTexCoord3f(0.0,0.0,1.25); glVertex3f(-2.2,0.0,1.25);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Roof Lower
+            glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,1.0,0);
+            glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,1.0,0);
+            glTexCoord3f(4.0,0.0,1.25); glVertex3f(2.2,0.0,1.25);
+            glTexCoord3f(0.0,0.0,1.25); glVertex3f(-2.2,0.0,1.25);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureDoor);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Door
+            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(0.75,-0.4,1.0001);
+            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(1.5,-0.4,1.0001);
+            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(1.5,-1.5,1.0001);
+            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(0.75,-1.5,1.0001);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureWindow);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Window Left
+            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(-1.5,-0.4,1.0001);
+            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(-0.75,-0.4,1.0001);
+            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(-0.75,-0.9,1.0001);
+            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(-1.5,-0.9,1.0001);
+        glEnd();
+
+        glBegin(GL_QUADS);  // Window Right
+            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(0.3,-0.4,1.0001);
+            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(-0.3,-0.4,1.0001);
+            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(-0.3,-0.9,1.0001);
+            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(0.3,-0.9,1.0001);
+        glEnd();
+
+        // Back side
+    glPushMatrix();
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTranslatef(0,0,-6);
+        glRotatef(_angle, 0.0, 1.0, 0.0);
+        glBegin(GL_QUADS);  // Wall
+            glTexCoord3f(0.0,2.0,-1);  glVertex3f(-2,0.1,-1);
+            glTexCoord3f(4.0,2.0,-1);  glVertex3f(2,0.1,-1);
+            glTexCoord3f(4.0,0.0,-1);  glVertex3f(2,-1.5,-1);
+            glTexCoord3f(0.0,0.0,-1);  glVertex3f(-2,-1.5,-1);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureChimney);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Chimney
+            glTexCoord3f(0.0,2.0,0.1);  glVertex3f(-1.8,1.2,0.3);
+            glTexCoord3f(4.0,2.0,0.1);  glVertex3f(-1.5,1.2,0.3);
+            glTexCoord3f(4.0,0.0,0.1);  glVertex3f(-1.5,0.8,0.3);
+            glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-1.8,0.8,0.3);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureSnow);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Roof
+            glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,1.0001,0);
+            glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,1.0001,0);
+            glTexCoord3f(4.0,0.0,-1.25); glVertex3f(2.2,0.0,-1.25);
+            glTexCoord3f(0.0,0.0,-1.25); glVertex3f(-2.2,0.0,-1.25);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Roof Lower
+            glTexCoord3f(0.0,2.0,0); glVertex3f(-2.2,1.0,0);
+            glTexCoord3f(4.0,2.0,0);glVertex3f(2.2,1.0,0);
+            glTexCoord3f(4.0,0.0,-1.25); glVertex3f(2.2,0.0,-1.25);
+            glTexCoord3f(0.0,0.0,-1.25); glVertex3f(-2.2,0.0,-1.25);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureWindow);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Window Left
+            glTexCoord3f(0.0,1.0,-1.0001); glVertex3f(-1.5,-0.3,-1.0001);
+            glTexCoord3f(1.0,1.0,-1.0001); glVertex3f(-0.75,-0.3,-1.0001);
+            glTexCoord3f(1.0,0.0,-1.0001); glVertex3f(-0.75,-0.8,-1.0001);
+            glTexCoord3f(0.0,0.0,-1.0001); glVertex3f(-1.5,-0.8,-1.0001);
+        glEnd();
+
+        glBegin(GL_QUADS);  // Window Right
+            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(1.5,-0.3,-1.0001);
+            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(0.75,-0.3,-1.0001);
+            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(0.75,-0.8,-1.0001);
+            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(1.5,-0.8,-1.0001);
+        glEnd();
+    glPopMatrix();
+
+    // Right side
+    glPushMatrix();
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTranslatef(0,0,-6);
+        glRotatef(_angle, 0.0, 1.0, 0.0);
+        glBegin(GL_QUADS);  // Wall
+            glTexCoord3f(0.0,2.0,1); glVertex3f(2,0.2,1);
+            glTexCoord3f(2.0,2.0,-1); glVertex3f(2,0.2,-1);
+            glTexCoord3f(2.0,0.0,-1); glVertex3f(2,-1.5,-1);
+            glTexCoord3f(0.0,0.0,1); glVertex3f(2,-1.5,1);
+        glEnd();
+
+        glBegin(GL_TRIANGLES);  // Wall Upper
+            glTexCoord3f(0.0,1.0,0); glVertex3f(2,1.0,0);
+            glTexCoord3f(1.0,0.0,1); glVertex3f(2,0.2,1);
+            glTexCoord3f(-1.0,0.0,-1); glVertex3f(2,0.2,-1);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureChimney);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Chimney
+            glTexCoord3f(0.0,2.0,1); glVertex3f(-1.5,1.2,0.6);
+            glTexCoord3f(2.0,2.0,-1); glVertex3f(-1.5,1.2,0.3);
+            glTexCoord3f(2.0,0.0,-1); glVertex3f(-1.5,0.5,0.3);
+            glTexCoord3f(0.0,0.0,1); glVertex3f(-1.5,0.5,0.6);
+        glEnd();
+    glPopMatrix();
+
+    // Left side
+    glPushMatrix();
+        glBindTexture(GL_TEXTURE_2D, _textureWood);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTranslatef(0,0,-6);
+        glRotatef(_angle, 0.0, 1.0, 0.0);
+        glBegin(GL_QUADS);  // Wall
+            glTexCoord3f(0.0,2.0,1);    glVertex3f(-2,0.2,1);
+            glTexCoord3f(2.0,2.0,-1);    glVertex3f(-2,0.2,-1);
+            glTexCoord3f(2.0,0.0,-1);    glVertex3f(-2,-1.5,-1);
+            glTexCoord3f(0.0,0.0,1);    glVertex3f(-2,-1.5,1);
+        glEnd();
+
+        glBegin(GL_TRIANGLES);  // Wall Upper
+            glTexCoord3f(0.0,1.0,0);    glVertex3f(-2,1.0,0);
+            glTexCoord3f(1.0,0.0,1);    glVertex3f(-2,0.2,1);
+            glTexCoord3f(-1.0,0.0,-1);    glVertex3f(-2,0.2,-1);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureChimney);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Chimney
+            glTexCoord3f(0.0,2.0,1); glVertex3f(-1.8,1.2,0.6);
+            glTexCoord3f(2.0,2.0,-1); glVertex3f(-1.8,1.2,0.3);
+            glTexCoord3f(2.0,0.0,-1); glVertex3f(-1.8,0.65,0.3);
+            glTexCoord3f(0.0,0.0,1); glVertex3f(-1.8,0.5,0.6);
+        glEnd();
+
+        glBindTexture(GL_TEXTURE_2D, _textureDoor);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBegin(GL_QUADS);  // Door
+            glTexCoord3f(0.0,1.0,1.0001); glVertex3f(-2.001,-0.4,0.3);
+            glTexCoord3f(1.0,1.0,1.0001); glVertex3f(-2.001,-0.4,-0.3);
+            glTexCoord3f(1.0,0.0,1.0001); glVertex3f(-2.001,-1.5,-0.3);
+            glTexCoord3f(0.0,0.0,1.0001); glVertex3f(-2.001,-1.5,0.3);
+        glEnd();
+    glPopMatrix();
+//
+    glPopMatrix();
 	// add Coordinate Arrows for debug
 	drawCoordinateArrows();
 	//imgui does not handle light well
@@ -180,6 +422,22 @@ void Scene::display() {
 	glutPostRedisplay();
 }
 
+void Scene::mySpecialFunc(int key, int x, int y){
+    ImGui_ImplGLUT_SpecialFunc(key, x, y);
+	switch (key) {
+    case GLUT_KEY_RIGHT:
+        _angle += 1;
+        if (_angle > 360) _angle = 0.0;
+		break;
+    case GLUT_KEY_LEFT:
+        _angle -= 1;
+        if (_angle > 360) _angle = 0.0;
+	    break;
+	}
+	glutPostRedisplay();
+}
+
+
 // Handles keyboard press
 void Scene::keyboard(unsigned char key, int x, int y) {
 	// imgui keyboard func
@@ -188,10 +446,10 @@ void Scene::keyboard(unsigned char key, int x, int y) {
 	// do the key action
 	key = tolower(key);
 	if (key == 'w') {
-		dog->walk(0.2f);
+		dog->walk(0.1f);
 	}
 	else if (key == 's') {
-		dog->walk(-0.2f);
+		dog->walk(-0.1f);
 	}
 	else if (key == 'd') {
 		dog->rotate(-5.0f);
@@ -244,10 +502,10 @@ void Scene::SpecialInput(int key, int x, int y) {
 	switch (key)
 	{
 	case GLUT_KEY_UP:
-		dog->walk(0.2f);
+		dog->walk(0.1f);
 		break;
 	case GLUT_KEY_DOWN:
-		dog->walk(-0.2f);
+		dog->walk(-0.1f);
 		break;
 	case GLUT_KEY_LEFT:
 		dog->rotate(5.0f);
@@ -256,6 +514,17 @@ void Scene::SpecialInput(int key, int x, int y) {
 		dog->rotate(-5.0f);
 		break;
 	}
+//		switch (key) {
+//    case GLUT_KEY_RIGHT:
+//        _angle += 1;
+//        if (_angle > 360) _angle = 0.0;
+//		break;
+//    case GLUT_KEY_LEFT:
+//        _angle -= 1;
+//        if (_angle > 360) _angle = 0.0;
+//	    break;
+//	}
+//	glutPostRedisplay();
 }
 
 void Scene::SpecialInputUp(int key, int x, int y) {
