@@ -2165,7 +2165,7 @@
 1616835837 source:d:\b3\computergraphic\3d-house-using-opengl-and-c-\dog.cpp
 	"Dog.h"
 
-1616831064 d:\b3\computergraphic\3d-house-using-opengl-and-c-\dog.h
+1616858304 d:\b3\computergraphic\3d-house-using-opengl-and-c-\dog.h
 	"ObjectGL.h"
 
 1616831064 d:\b3\computergraphic\3d-house-using-opengl-and-c-\objectgl.h
@@ -4276,7 +4276,7 @@
 	<iostream>
 	"Scene.h"
 
-1616857759 d:\b3\computergraphic\3d-house-using-opengl-and-c-\scene.h
+1616858726 d:\b3\computergraphic\3d-house-using-opengl-and-c-\scene.h
 	<GL/glut.h>
 	<string>
 	<iostream>
@@ -4287,11 +4287,8 @@
 	<imgui/imgui.h>
 	<imgui/imgui_impl_glut.h>
 	<imgui/imgui_impl_opengl2.h>
-	"ObjectGL.h"
-	"Floor.h"
-	"Light.h"
 	"Dog.h"
-	"Walls.h"
+	"Light.h"
 
 1616831064 d:\b3\computergraphic\3d-house-using-opengl-and-c-\include\\imgui\imgui.h
 	"imconfig.h"
@@ -4316,10 +4313,10 @@
 	<string>
 	<glm/glm.hpp>
 
-1616831064 source:d:\b3\computergraphic\3d-house-using-opengl-and-c-\objectgl.cpp
+1616689745 source:d:\b3\computergraphic\3d-house-using-opengl-and-c-\objectgl.cpp
 	"ObjectGL.h"
 
-1616857685 source:d:\b3\computergraphic\3d-house-using-opengl-and-c-\scene.cpp
+1616858265 source:d:\b3\computergraphic\3d-house-using-opengl-and-c-\scene.cpp
 	"imageloader.h"
 
 1616831064 source:d:\b3\computergraphic\3d-house-using-opengl-and-c-\walls.cpp

@@ -13,11 +13,8 @@
 
 using namespace std;
 
-#include "ObjectGL.h"
-#include "Floor.h"
-#include "Light.h"
 #include "Dog.h"
-#include "Walls.h"
+#include "Light.h"
 
 // window vars
 const int WINDOW_WIDTH = 1500;
@@ -55,6 +52,7 @@ class Scene
 {
 private:
 	Dog* dog;
+    Light* flashlight;
 	static Scene* currentInstance; // trick that helps to add opengl callbacks in class
 	void display_menu(); // display the menu (base on imgui)
 public:

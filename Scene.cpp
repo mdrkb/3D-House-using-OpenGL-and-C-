@@ -86,7 +86,7 @@ Scene::Scene(int argc, char** argv) {
 
 	// create drawing objects
 	this->dog = new Dog("GermanShephardLowPoly.obj", 0, -1.5f, -3, 0.05f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
-	this->flashlight = new Light(GL_LIGHT0, 0, 8, 0, "Flashlight.obj", 0.2f);
+    this->flashlight = new Light(GL_LIGHT0, 0, 8, 0, "Flashlight.obj", 0.2f);
 	this->flashlight->towardVector = glm::vec3(0, 0, 1);
 
 	// Setup Dear ImGui context
@@ -143,7 +143,8 @@ void Scene::display() {
 	glEnable(GL_DEPTH_TEST);
 	glShadeModel(GL_SMOOTH);
 	glEnable(GL_NORMALIZE);
-
+	// add scene lights
+	flashlight->addlight();
 
 	glEnable(GL_LIGHTING);
 	dog->draw();

@@ -54,7 +54,7 @@ class Dog : public ObjectGL {
 		void wagTail(GLfloat angle = 5.0f); // wag the dog's tail
 		void moveLegs(GLfloat angle, bool vertical = true); // move the dog's legs (for walking)
 		glm::vec3 getViewPos(); // get the pos of the dog's eyes
-		glm::vec3 getViewTarget(); // get the viewing target 
+		glm::vec3 getViewTarget(); // get the viewing target
 		bool right_legs_forward = true; // legs movement direction
 		bool legs_turn_right = true; // legs rotate direction
 	private:
@@ -64,5 +64,5 @@ class Dog : public ObjectGL {
 		GLfloat legs_angle_per_step = 3.0f; // legs walking movement speed
 		GLfloat legs_angle_per_rotate = 8.0f; // legs rotation movement speed
 		void handleRotation(int organ); // roatate an organ from a task
-		glm::vec3 getViewVector(); // get the viewing vector 
+		glm::vec3 getViewVector(); // get the viewing vector
 };
