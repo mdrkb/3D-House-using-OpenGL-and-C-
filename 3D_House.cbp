@@ -21,8 +21,8 @@
 					<Add directory="include/" />
 				</Compiler>
 				<Linker>
-					<Add library="C:/MinGW/lib/libfreeglut.a" />
-					<Add library="C:/MinGW/lib/libfreeglut_static.a" />
+					<Add library="E:/CodeBlocks/MinGW/lib/libfreeglut.a" />
+					<Add library="E:/CodeBlocks/MinGW/lib/libfreeglut_static.a" />
 					<Add directory="lib/" />
 				</Linker>
 			</Target>
@@ -81,10 +81,10 @@
 			</Target>
 		</Build>
 		<Linker>
-			<Add library="C:/MinGW/lib/libfreeglut.a" />
-			<Add library="C:/MinGW/lib/libfreeglut_static.a" />
-			<Add library="C:/MinGW/lib/libglu32.a" />
-			<Add library="C:/MinGW/lib/libopengl32.a" />
+			<Add library="E:/CodeBlocks/MinGW/lib/libfreeglut.a" />
+			<Add library="E:/CodeBlocks/MinGW/lib/libfreeglut_static.a" />
+			<Add library="E:/CodeBlocks/MinGW/lib/libglu32.a" />
+			<Add library="E:/CodeBlocks/MinGW/lib/libopengl32.a" />
 		</Linker>
 		<Unit filename="Dog.cpp" />
 		<Unit filename="Dog.h" />
@@ -118,6 +118,9 @@
 		<Unit filename="main.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
+			<code_completion />
+			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
