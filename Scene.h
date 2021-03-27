@@ -55,18 +55,6 @@ class Scene
 {
 private:
 	Dog* dog;
-	ObjectGL* dog_house;
-	ObjectGL* statue;
-	ObjectGL* books;
-	ObjectGL* table;
-	ObjectGL* tv;
-	ObjectGL* sofa;
-	ObjectGL* chair;
-	Light* flashlight;
-	Light* lamp;
-	Floor* floor;
-	Walls* walls;
-	void drawCoordinateArrows(); // draw coordinate arrows fpr debuging
 	static Scene* currentInstance; // trick that helps to add opengl callbacks in class
 	void display_menu(); // display the menu (base on imgui)
 public:
