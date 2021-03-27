@@ -46,7 +46,7 @@ void Light::draw() {
 		glutSolidCone(0.3, 0.6, 10, 10);
 		glPushMatrix();
 		glTranslatef(0, 0, 0.1f);
-		glutSolidCylinder(0.2, 0.39, 10, 10);
+//		glutSolidCylinder(0.2, 0.39, 10, 10);
 		glPopMatrix();
 
 		glDisable(GL_LIGHTING);
@@ -54,7 +54,7 @@ void Light::draw() {
 		glutSolidSphere(0.2, 100, 100);
 		glEnable(GL_LIGHTING);
 	}
-	
+
 	glPopMatrix();
 }
 

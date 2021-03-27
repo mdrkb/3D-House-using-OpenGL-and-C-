@@ -81,9 +81,9 @@ void ImGui_ImplGLUT_InstallFuncs()
     glutMotionFunc(ImGui_ImplGLUT_MotionFunc);
     glutPassiveMotionFunc(ImGui_ImplGLUT_MotionFunc);
     glutMouseFunc(ImGui_ImplGLUT_MouseFunc);
-#ifdef __FREEGLUT_EXT_H__
-    glutMouseWheelFunc(ImGui_ImplGLUT_MouseWheelFunc);
-#endif
+//#ifdef __FREEGLUT_EXT_H__
+//    glutMouseWheelFunc(ImGui_ImplGLUT_MouseWheelFunc);
+//#endif
     glutKeyboardFunc(ImGui_ImplGLUT_KeyboardFunc);
     glutKeyboardUpFunc(ImGui_ImplGLUT_KeyboardUpFunc);
     glutSpecialFunc(ImGui_ImplGLUT_SpecialFunc);
