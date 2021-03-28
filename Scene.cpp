@@ -4,7 +4,7 @@
 Scene* currentInstance;
 float _angle = 0.0;
 GLuint _textureBrick, _textureDoor, _textureGrass, _textureRoof, _textureWindow, _textureSky, _textureChimney, _textureSand, _textureSnow, _textureWood;
-glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+
 void displaycallback()
 {
 	currentInstance->display();
@@ -78,6 +78,7 @@ void Initialize() {
    image = loadBMP("wood.bmp");
 	_textureWood = loadTexture(image);
 	delete image;
+
 }
 
 Scene::Scene(int argc, char** argv) {
@@ -129,7 +130,7 @@ void Scene::display() {
 	glShadeModel(GL_SMOOTH);
 	glEnable(GL_NORMALIZE);
 	// add scene lights
-	flashlight->addlight();
+//	flashlight->addlight();
 
     // Sky
     glPushMatrix();
@@ -375,6 +376,25 @@ void Scene::display() {
       horse->draw();
     glDisable(GL_LIGHTING);
 //
+    glEnable(GL_LIGHT0); //Enable light #0
+	glEnable(GL_LIGHT1); //Enable light #1
+
+    //Add ambient light
+	GLfloat ambientColor[] = {0.2f, 0.2f, 0.2f, 1.0f}; //Color (0.2, 0.2, 0.2)
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
+
+	//Add positioned light
+	GLfloat lightColor0[] = {0.5f, 0.5f, 0.5f, 1.0f}; //Color (0.5, 0.5, 0.5)
+	GLfloat lightPos0[] = {4.0f, 0.0f, 8.0f, 1.0f}; //Positioned at (4, 0, 8)
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
+
+	//Add directed light
+	GLfloat lightColor1[] = {0.5f, 0.2f, 0.2f, 1.0f}; //Color (0.5, 0.2, 0.2)
+	//Coming from the direction (-1, 0.5, 0.5)
+	GLfloat lightPos1[] = {-1.0f, 0.5f, 5.5f, 0.0f};
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
+	glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
 
 	glFlush();
 	glutSwapBuffers();
