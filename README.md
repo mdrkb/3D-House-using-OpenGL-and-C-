@@ -1,9 +1,10 @@
 # DogGL
-#### Dog room with glut and opengl.
-![screenshoot](screenshot.PNG)
+#### Dog and House with glut and opengl.
 
-This program use c++ and opengl to draw a room with a dog.<br>
-Use the menu (prees m to show/hide) to control the scene and open the help category for more information.
+We have updated the original 3D house project by adding a 3D dog which can move and turn(?) the head.<br>
+Use 'a', 's', 'd', 'w' to move the dog. <br>
+Use 't', 'g', 'q', 'e' to control the dog's head. <br>
+Use left key and right key to see the house. <br>
 
 ### technologies
 - [freeglut](http://freeglut.sourceforge.net/)/[opengl](https://www.opengl.org/): used to draw the scene.
@@ -12,4 +13,3 @@ Use the menu (prees m to show/hide) to control the scene and open the help categ
 - [tinyobjloader](https://github.com/tinyobjloader/tinyobjloader): used to load the [wavefront .obj](http://paulbourke.net/dataformats/obj/) files, 
 this files contain the data of the drawing objects in the scene an was taken from websites like [cgtrader](https://www.cgtrader.com/) and [free3d](https://free3d.com/).
 
-Feel free to ask questions, contribute and use this code as you like :)
