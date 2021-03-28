@@ -1,15 +1,20 @@
-# DogGL
-#### Dog and House with glut and opengl.
+# 3D House using OpenGL and C
 
-We have updated the original 3D house project by adding a 3D dog which can move and turn(?) the head.<br>
-Use 'a', 's', 'd', 'w' to move the dog. <br>
-Use 't', 'g', 'q', 'e' to control the dog's head. <br>
-Use left key and right key to see the house. <br>
-
-### technologies
-- [freeglut](http://freeglut.sourceforge.net/)/[opengl](https://www.opengl.org/): used to draw the scene.
+## Required libraries
+- [freeglut](http://freeglut.sourceforge.net/): used to draw the scene.
 - [glm](https://github.com/g-truc/glm): used to do geometric calculations.
 - [imgui](https://github.com/ocornut/imgui): used to create the menu.
-- [tinyobjloader](https://github.com/tinyobjloader/tinyobjloader): used to load the [wavefront .obj](http://paulbourke.net/dataformats/obj/) files, 
-this files contain the data of the drawing objects in the scene an was taken from websites like [cgtrader](https://www.cgtrader.com/) and [free3d](https://free3d.com/).
+- [tinyobjloader](https://github.com/tinyobjloader/tinyobjloader): used to load the 3D models in [OBJ](http://paulbourke.net/dataformats/obj/) type.
 
+## Features
+- Press left or right key to move the scene.
+- Press 'a', 's', 'd', 'w' to move the dog.
+- Press 't', 'g', 'q', 'e' to control the dog's head.
+
+## Credits
+### Models
+"Horse 01" (https://skfb.ly/69Bwy) by VitSh is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+### References
+https://github.com/mdrkb/3D-House-using-OpenGL-and-C-
+https://github.com/maayankestler/DogGL
