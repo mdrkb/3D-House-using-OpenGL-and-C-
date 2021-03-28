@@ -40,6 +40,7 @@ Dog::Dog(string inputfile, GLfloat PosX, GLfloat PosY, GLfloat PosZ, GLfloat sca
 			}
 		}
 	}
+
 }
 
 void Dog::rotateOrgan(GLfloat angle, int organ, bool vertical) {
