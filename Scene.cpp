@@ -99,6 +99,7 @@ Scene::Scene(int argc, char** argv) {
    for (int i=0; i<5; i++){
        this->tree[i] = new ObjectGL("tree.obj", -4.0+2.0*i, -1.5f, -3.0, 3.0f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
    }
+   this->sled = new ObjectGL("sled.obj", -2.0, -1.2f, 3.0, 0.1f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0), -90);
    this->flashlight = new Light(GL_LIGHT0, 0, 8, 0, "Flashlight.obj", 0.2f);
 	this->flashlight->towardVector = glm::vec3(0, 0, 1);
 
@@ -398,6 +399,7 @@ void Scene::display() {
       for (int i=0; i<5; i++){
          tree[i]->draw();
       }
+      sled->draw();
     glDisable(GL_LIGHTING);
 //
     glEnable(GL_LIGHT0); //Enable light #0
