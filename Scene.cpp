@@ -92,6 +92,7 @@ Scene::Scene(int argc, char** argv) {
 
 	// create drawing objects
 	this->dog = new Dog("GermanShephardLowPoly.obj", 0, -1.5f, 1.5, 0.05f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
+   this->horse = new ObjectGL("horse.obj", -2.0, -1.5f, 2.0, 0.4f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
    this->flashlight = new Light(GL_LIGHT0, 0, 8, 0, "Flashlight.obj", 0.2f);
 	this->flashlight->towardVector = glm::vec3(0, 0, 1);
 
@@ -139,7 +140,7 @@ void Scene::display() {
 	gluPerspective(60.0, aspect, 1, 100.0); // use Perspective projection
 
 	// set view
-//   gluLookAt(0, 0, 1, camera_target[0], camera_target[1], camera_target[2], 0, 1, 0);
+   gluLookAt(0, 0, 1, camera_target[0], camera_target[1], camera_target[2], 0, 1, 0);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -396,6 +397,7 @@ void Scene::display() {
       glTranslatef(0,0,-6);
       glRotatef(_angle, 0.0, 1.0, 0.0);
       dog->draw();
+      horse->draw();
     glDisable(GL_LIGHTING);
 //
 
