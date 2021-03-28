@@ -94,6 +94,9 @@ Scene::Scene(int argc, char** argv) {
 	// create drawing objects
 	this->dog = new Dog("GermanShephardLowPoly.obj", 0, -1.5f, 1.5, 0.05f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0),30);
    this->horse = new ObjectGL("horse01.obj", -1.0, -1.5f, 2.0, 0.4f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0), 180);
+   for (int i=0; i<5; i++){
+       this->tree[i] = new ObjectGL("tree.obj", -4.0+2.0*i, -1.5f, -3.0, 3.0f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
+   }
    this->flashlight = new Light(GL_LIGHT0, 0, 8, 0, "Flashlight.obj", 0.2f);
 	this->flashlight->towardVector = glm::vec3(0, 0, 1);
 
@@ -374,6 +377,9 @@ void Scene::display() {
       glRotatef(_angle, 0.0, 1.0, 0.0);
       dog->draw();
       horse->draw();
+      for (int i=0; i<5; i++){
+         tree[i]->draw();
+      }
     glDisable(GL_LIGHTING);
 //
     glEnable(GL_LIGHT0); //Enable light #0
