@@ -4,7 +4,7 @@
 Scene* currentInstance;
 float _angle = 0.0;
 GLuint _textureBrick, _textureDoor, _textureGrass, _textureRoof, _textureWindow, _textureSky, _textureChimney, _textureSand, _textureSnow, _textureWood;
-
+glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 void displaycallback()
 {
 	currentInstance->display();
@@ -96,18 +96,6 @@ Scene::Scene(int argc, char** argv) {
    this->flashlight = new Light(GL_LIGHT0, 0, 8, 0, "Flashlight.obj", 0.2f);
 	this->flashlight->towardVector = glm::vec3(0, 0, 1);
 
-	// Setup Dear ImGui context
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-
-	// Setup Dear ImGui style
-	ImGui::StyleColorsClassic();
-
-	// Setup Platform/Renderer bindings
-	ImGui_ImplGLUT_Init();
-	ImGui_ImplGLUT_InstallFuncs(); // use the imgui glut funcs
-	ImGui_ImplOpenGL2_Init();
-
 	// configure glut funcs
 	::currentInstance = this;
 	glutReshapeFunc(reshapecallback);
@@ -119,28 +107,17 @@ Scene::Scene(int argc, char** argv) {
 	glutSpecialUpFunc(Specialupcallback);
 
 	glutMainLoop(); // run the main loop
-
-	// imgui cleanup
-	ImGui_ImplOpenGL2_Shutdown();
-	ImGui_ImplGLUT_Shutdown();
-	ImGui::DestroyContext();
 }
 
 // Handles the display callback to show what we have drawn.
 void Scene::display() {
-	// Start the Dear ImGui frame
-	ImGui_ImplOpenGL2_NewFrame();
-	ImGui_ImplGLUT_NewFrame();
-
-	ImGui::Render();
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(60.0, aspect, 1, 100.0); // use Perspective projection
 
 	// set view
-   gluLookAt(0, 0, 1, camera_target[0], camera_target[1], camera_target[2], 0, 1, 0);
+    gluLookAt(0, 0, 1, camera_target[0], camera_target[1], camera_target[2], 0, 1, 0);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -153,8 +130,6 @@ void Scene::display() {
 	glEnable(GL_NORMALIZE);
 	// add scene lights
 	flashlight->addlight();
-
-
 
     // Sky
     glPushMatrix();
@@ -408,8 +383,6 @@ void Scene::display() {
 
 // Handles keyboard press
 void Scene::keyboard(unsigned char key, int x, int y) {
-	// imgui keyboard func
-	ImGui_ImplGLUT_KeyboardFunc(key, x, y);
 
 	key = tolower(key);
 	if (key == 'w') {
@@ -441,8 +414,6 @@ void Scene::keyboard(unsigned char key, int x, int y) {
 
 // Handles keyboard after press
 void Scene::keyboardUp(unsigned char key, int x, int y) {
-	// imgui keyboard func
-	ImGui_ImplGLUT_KeyboardUpFunc(key, x, y);
 
 	key = tolower(key);
 	if (key == 'w' || key == 's') {
@@ -454,9 +425,6 @@ void Scene::keyboardUp(unsigned char key, int x, int y) {
 }
 
 void Scene::SpecialInput(int key, int x, int y) {
-	// imgui special func
-	ImGui_ImplGLUT_SpecialFunc(key, x, y);
-
 	// do the key action
 //	switch (key)
 //	{
@@ -486,9 +454,6 @@ void Scene::SpecialInput(int key, int x, int y) {
 }
 
 void Scene::SpecialInputUp(int key, int x, int y) {
-	// imgui specialup func
-	ImGui_ImplGLUT_SpecialUpFunc(key, x, y);
-
 	// make the legs move when walk or rotate
 	if (key == GLUT_KEY_UP || key == GLUT_KEY_DOWN ) {
 		close_legs_vert = true;
@@ -527,8 +492,6 @@ void Scene::timer(int v) {
 
 // Handles the window reshape event
 void Scene::reshape(GLint w, GLint h) {
-	// imgui reshape func
-	ImGui_ImplGLUT_ReshapeFunc(w, h);
 
 	glViewport(0, 0, w, h);
 	aspect = float(w) / float(h);
