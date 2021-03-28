@@ -3,7 +3,7 @@
 
 Scene* currentInstance;
 float _angle = 0.0;
-GLuint _textureBrick, _textureDoor, _textureGrass, _textureRoof, _textureWindow, _textureSky, _textureChimney, _textureSand, _textureSnow, _textureWood;
+GLuint _textureBrick, _textureDoor, _textureGrass, _textureRoof, _textureWindow, _textureSky, _textureChimney, _textureSand, _textureSnow, _textureWood, _textureMoon;
 
 void displaycallback()
 {
@@ -77,6 +77,8 @@ void Initialize() {
 	_textureSnow = loadTexture(image);
    image = loadBMP("wood.bmp");
 	_textureWood = loadTexture(image);
+   image = loadBMP("moon.bmp");
+	_textureMoon = loadTexture(image);
 	delete image;
 
 }
@@ -148,6 +150,22 @@ void Scene::display() {
             glTexCoord3f(0.0,0.0,0.1);  glVertex3f(-20,-20,0);
         glEnd();
     glPopMatrix();
+
+   // Moon
+   glPushMatrix();
+      glBindTexture(GL_TEXTURE_2D, _textureSnow);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      glTranslatef(0,0,-6);
+      glRotatef(_angle, 0.0, 1.0, 0.0);
+
+      glBegin(GL_TRIANGLE_FAN);
+        glVertex3f(4.0, 3.0, -3.0); // Center
+        for(int i = 0.0f; i <= 360; i++)
+                glVertex3f(0.5*cos(3.1416 * i / 180.0) + 4.0, 0.5*sin(3.1416 * i / 180.0) + 3.0, -4.0);
+
+        glEnd();
+   glPopMatrix();
 
 	// Snow
     glPushMatrix();
