@@ -113,7 +113,7 @@ namespace {
 Image* loadBMP(const char* filename) {
 	ifstream input;
 	char src[100];
-	strcpy(src, "C:\\Users\\neko_\\Desktop\\Github\\3D-House-using-OpenGL-and-C-\\images\\");
+	strcpy(src, "images\\");
 	strcat(src, filename);
 	input.open(src, ifstream::binary);
 	assert(!input.fail() || !"Could not find file");
@@ -180,12 +180,4 @@ Image* loadBMP(const char* filename) {
 	input.close();
 	return new Image(pixels2.release(), width, height);
 }
-
-
-
-
-
-
-
-
 
