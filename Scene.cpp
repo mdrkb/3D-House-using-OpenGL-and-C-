@@ -91,7 +91,7 @@ Scene::Scene(int argc, char** argv) {
 	Initialize();
 
 	// create drawing objects
-	this->dog = new Dog("GermanShephardLowPoly.obj", 0, -1.5f, -3, 0.05f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
+	this->dog = new Dog("GermanShephardLowPoly.obj", 0, -1.5f, 1.5, 0.05f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
    this->flashlight = new Light(GL_LIGHT0, 0, 8, 0, "Flashlight.obj", 0.2f);
 	this->flashlight->towardVector = glm::vec3(0, 0, 1);
 
@@ -153,11 +153,7 @@ void Scene::display() {
 	// add scene lights
 	flashlight->addlight();
 
-	glEnable(GL_LIGHTING);
-      glTranslatef(0,0,-6);
-      glRotatef(_angle, 0.0, 1.0, 0.0);
-      dog->draw();
-    glDisable(GL_LIGHTING);
+
 
     // Sky
     glPushMatrix();
@@ -394,6 +390,13 @@ void Scene::display() {
             glTexCoord3f(0.0,0.0,1.0001); glVertex3f(-2.001,-1.5,0.3);
         glEnd();
     glPopMatrix();
+
+   // Objects
+	glEnable(GL_LIGHTING);
+      glTranslatef(0,0,-6);
+      glRotatef(_angle, 0.0, 1.0, 0.0);
+      dog->draw();
+    glDisable(GL_LIGHTING);
 //
 
 	glFlush();
