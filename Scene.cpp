@@ -485,6 +485,7 @@ void Scene::SpecialInputUp(int key, int x, int y) {
 
 void Scene::timer(int v) {
 	// wag tail if needed
+	wag_tail = true;
 	if (wag_tail) {
 		dog->wagTail();
 		glutPostRedisplay();
