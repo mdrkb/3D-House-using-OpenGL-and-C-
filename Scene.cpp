@@ -92,7 +92,7 @@ Scene::Scene(int argc, char** argv) {
 
 	// create drawing objects
 	this->dog = new Dog("GermanShephardLowPoly.obj", 0, -1.5f, 1.5, 0.05f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
-   this->horse = new ObjectGL("horse.obj", -2.0, -1.5f, 2.0, 0.4f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
+   this->horse = new ObjectGL("horse01.obj", -2.0, -1.5f, 2.0, 0.4f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
    this->flashlight = new Light(GL_LIGHT0, 0, 8, 0, "Flashlight.obj", 0.2f);
 	this->flashlight->towardVector = glm::vec3(0, 0, 1);
 
@@ -531,5 +531,5 @@ void Scene::reshape(GLint w, GLint h) {
 	ImGui_ImplGLUT_ReshapeFunc(w, h);
 
 	glViewport(0, 0, w, h);
-	aspect = float(w / h);
+	aspect = float(w) / float(h);
 }

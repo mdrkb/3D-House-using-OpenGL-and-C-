@@ -1,4 +1,4 @@
-# Blender v2.92.0 OBJ File: 'horse.blend'
+# Blender v2.92.0 OBJ File: 'horse_brown.blend'
 # www.blender.org
 mtllib horse.mtl
 o horse_Cube.124
@@ -3197,7 +3197,7 @@ vn -0.5832 -0.3113 0.7503
 vn -0.4617 0.2006 0.8640
 vn 0.6976 0.5203 -0.4925
 vn 0.2763 0.6159 0.7377
-usemtl Material.001
+usemtl Material
 s 1
 f 226/1/1 4/2/2 223/3/3
 f 513/4/4 3/5/5 2/6/6
