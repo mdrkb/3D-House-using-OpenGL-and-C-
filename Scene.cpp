@@ -161,7 +161,7 @@ void Scene::display() {
       glRotatef(_angle, 0.0, 1.0, 0.0);
 
       glBegin(GL_TRIANGLE_FAN);
-        glVertex3f(4.0, 3.0, -3.0); // Center
+        glVertex3f(4.0, 3.0, -4.0); // Center
         for(int i = 0.0f; i <= 360; i++)
                 glVertex3f(0.5*cos(3.1416 * i / 180.0) + 4.0, 0.5*sin(3.1416 * i / 180.0) + 3.0, -4.0);
 

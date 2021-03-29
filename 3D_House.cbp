@@ -88,16 +88,12 @@
 		</Linker>
 		<Unit filename="Dog.cpp" />
 		<Unit filename="Dog.h" />
-		<Unit filename="Floor.cpp" />
-		<Unit filename="Floor.h" />
 		<Unit filename="Light.cpp" />
 		<Unit filename="Light.h" />
 		<Unit filename="ObjectGL.cpp" />
 		<Unit filename="ObjectGL.h" />
 		<Unit filename="Scene.cpp" />
 		<Unit filename="Scene.h" />
-		<Unit filename="Walls.cpp" />
-		<Unit filename="Walls.h" />
 		<Unit filename="imageloader.cpp" />
 		<Unit filename="imageloader.h" />
 		<Unit filename="include/imgui/imconfig.h" />
