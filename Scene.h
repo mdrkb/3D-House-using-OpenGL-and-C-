@@ -55,6 +55,7 @@ private:
 	ObjectGL* horse;
 	ObjectGL* tree[5];
 	ObjectGL* sled;
+	ObjectGL* snowman;
     Light* flashlight;
 	static Scene* currentInstance; // trick that helps to add opengl callbacks in class
 	void display_menu(); // display the menu (base on imgui)

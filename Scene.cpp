@@ -100,6 +100,7 @@ Scene::Scene(int argc, char** argv) {
        this->tree[i] = new ObjectGL("tree.obj", -4.0+2.0*i, -1.5f, -3.0, 3.0f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0));
    }
    this->sled = new ObjectGL("sled.obj", -2.0, -1.2f, 3.0, 0.1f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0), -90);
+   this->snowman = new ObjectGL("snowman.obj", 2.0, -1.2f, 2.5, 4.0f, glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0), -30);
    this->flashlight = new Light(GL_LIGHT0, 0, 8, 0, "Flashlight.obj", 0.2f);
 	this->flashlight->towardVector = glm::vec3(0, 0, 1);
 
@@ -158,7 +159,7 @@ void Scene::display() {
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
       glTranslatef(0,0,-6);
-      glRotatef(_angle, 0.0, 1.0, 0.0);
+      glRotatef(_angle, 0.0, 1.0, 1.0);
 
       glBegin(GL_TRIANGLE_FAN);
         glVertex3f(4.0, 3.0, -4.0); // Center
@@ -255,7 +256,7 @@ void Scene::display() {
         glEnd();
     glPopMatrix();
 
-        // Back side
+    // Back side
     glPushMatrix();
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, _textureWood);
@@ -400,6 +401,7 @@ void Scene::display() {
          tree[i]->draw();
       }
       sled->draw();
+      snowman->draw();
     glDisable(GL_LIGHTING);
 //
     glEnable(GL_LIGHT0); //Enable light #0
